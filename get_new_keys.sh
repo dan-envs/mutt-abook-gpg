@@ -31,4 +31,4 @@ mv "${CONV_ABOOK}" "${HOME}"/.abook/addressbook
 rm "${CSV}"
 
 # Keep the last 8 backups
-rm "$(ls "${HOME}/.abook/addressbook-*" | head -n -8)"
+find "${HOME}/.abook/" -name "addressbook-*" | head -n -8 | xargs -I{} rm {} > /dev/null 2>&1
