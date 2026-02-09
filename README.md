@@ -1,7 +1,7 @@
 # abook-get-gpg-keys
 Receive new GPG keys from within Mutt or NeoMutt with the "abook" TUI program.
 
-**!!!THIS README.md IS A WORK-IN-PROGRESS!!!**
+**!!!THIS IS A WORK-IN-PROGRESS!!!**
 
 # Setup
 1. Setup your '~/.gnupg/gpg.conf' as follows:
