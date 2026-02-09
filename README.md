@@ -21,8 +21,8 @@ Add the following line to your '.muttrc':
 `source ~/.abook/abook.mutt.rc`
 
 ### How to operate with Mutt
-**Start Mutt with the following command**: `mutt`
-**Add an email address to abook**: `'<SHIFT>+a'`
+**Start Mutt with the following command**: `mutt`  
+**Add an email address to abook**: `'<SHIFT>+a'`  
 **Receive public GPG/OpenPGP keys for all unknown contacts**: `'<CTRL>+a'`
 
 ## Setup for NeoMutt
@@ -35,8 +35,8 @@ Create an alias in your '.bashrc' or '.zsh' for `mutt`:
 `alias mutt="neomutt"`
 
 ### How to operate with NeoMutt
-**Start Mutt with the following command**: `mutt` or `neomutt`
-**Add an email address to abook**: `'a'`
-**Receive public GPG/OpenPGP keys for all unknown contacts**: `'<SHIFT>+a'`
-**Query email contacts**:
+**Start Mutt with the following command**: `mutt` or `neomutt`  
+**Add an email address to abook**: `'a'`  
+**Receive public GPG/OpenPGP keys for all unknown contacts**: `'<SHIFT>+a'`  
+**Query email contacts**: Press `'<TAB>'`
 
