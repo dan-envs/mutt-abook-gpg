@@ -3,8 +3,8 @@ macro index \Ca "!abook --mutt-query ' ' | ~/.abook/get_new_keys.sh && echo 'Pre
 macro pager \Ca "!abook --mutt-query ' ' | ~/.abook/get_new_keys.sh && echo 'Press any key to continue...' && read -n 1 -s\n" 'Update public keys from contacts in addressbook.'
 
 # MACRO 'A': Press <SHIFT>+a to add an address to the addressbook
-macro index A "|abook --add-email --quiet\n" 'Add email to address book'
-macro pager A "|abook --add-email --quiet\n" 'Add email to address book'
+macro index A "|abook --add-email-quiet\n" 'Add email to address book'
+macro pager A "|abook --add-email-quiet\n" 'Add email to address book'
 
 # Set abook query command
 set query_command="abook --mutt-query '%s'"
