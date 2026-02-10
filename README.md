@@ -1,15 +1,23 @@
-# abook-get-gpg-keys
+# mutt-abook-gpg
 Receive new GPG keys from within Mutt or NeoMutt with the "abook" TUI program.
+
+**Read this README in full and be sure that you have understood!**
+
+   **DANGER**: All information except 'name' and 'email' are **deleted**,
+   when using the macros in NeoMutt or Mutt. The 'notes' field is used to
+   store information, if a GnuPG/OpenPGP public key has been found for the
+   contact. So you best start with a fresh address book or make a backup of your
+   existing address book (see entry '3.' under 'Setup').
 
 **Note**: All contact names added to abook by Mutt or NeoMutt are prefixed
 automatically with '#'. These are again removed when searching in Mutt or
 NeoMutt. This is needed to find those entries by the `get_new_keys.sh`
 script. So if you enter an address to your abook contacts manually, you
-**have** to prefix the contact's name with a '#' char, otherwise they'll be
-deleted when running the `get_new_keys.sh` script manually or from inside
-Mutt or NeoMutt. That is because the `abook --mutt-query` command can't be
-used with an empty string as an parameter. So I search addresses with the
-command `abook --mutt-query '#'`. Keep that in mind!
+**have** to prefix the contact's name with a '#' char, otherwise **they
+will be deleted** when running the `get_new_keys.sh` script from the Mutt or
+NeoMutt macro `(<CTRL>+k)`. That is because the `abook --mutt-query` command can't be used
+with an empty string as an parameter. So I search addresses with the command
+`abook --mutt-query '#'`. Keep that in mind!
 
 # Setup
 1. Setup your '~/.gnupg/gpg.conf' as follows:
@@ -26,16 +34,47 @@ auto-key-retrieve
 
   `gpg --list-keys`
 
-3. Clone this repository to '~/.abook':
+  You can also generate a new GnuPG key with the following commands, if you
+  don't already have one:
 
-  `git clone https://git.envs.net/dan/abook-get-gpg-keys.git ~/.abook`
+  `gpg --gen-key` for a simple setup for your email address
+
+  `gpg --full-gen-key` for a more advanced setup and appending a comment to your
+  key. However, I recommend going with the defaults for the key algorithms.
+
+3. **Important**: It's best to start with a fresh address book! If you do then
+   the following command is not needed.
+
+   If you already have an abook address book, you need to add a
+   '#' before all names!
+
+   `sed -i.orig -r 's/^name=([^#].*)$/name=#\1/g' ~/.abook/addressbook`
+
+   A backup of the old file is stored into `~/.abook/addressbook.orig`.
+
+4. Clone this repository to '~/.abook':
+
+  `git clone https://git.envs.net/dan/mutt-abook-gpg.git ~/.abook`
 
 ## Setup for Mutt
 Add the following line to your '.muttrc':
 
 `source ~/.abook/abook.mutt.rc`
 
+### Set up Mutt to use GPG for signing/encryption
+You have to set up Mutt yourself for using GPG. I can't help you there, because
+I use NeoMutt.
+
+If you can help providing this information here, please contact me!
+
 ### How to operate with Mutt
+Every time you add a new entry to your address book with `'<SHIFT>+a'`, you have
+to run `'<CTRL>+k'`, if you want to check if a key for the new address is
+available.
+
+**Note**: 8 backups of the addressbook are kept, when using the script through
+the `'<CTRL>+k'` macro from inside Mutt or using the script manually.
+
 **Start Mutt with the following command**: `mutt`  
 **Add an email address to abook**: `'<SHIFT>+a'`  
 **Refresh public GPG/OpenPGP keys for all contacts**: `'<CTRL>+k'`  
@@ -50,9 +89,39 @@ Create an alias in your '.bashrc' or '.zsh' for `mutt`:
 
 `alias mutt="neomutt"`
 
+### Set up NeoMutt to use GPG for signing/encryption
+Delete your previous GPG configuration and replace it with the following:
+
+```
+# GPG
+#source gpg.rc
+set pgp_default_key = "<your email address from your key>"
+set pgp_sign_as = "<your email address from your key>"
+set postpone_encrypt = yes
+set pgp_self_encrypt = yes
+set pgp_timeout = 3600
+set crypt_use_gpgme = yes
+set crypt_autopgp = yes
+set crypt_protected_headers_subject = "(PGP message)"
+set crypt_auto_sign = yes
+set pgp_auto_decode
+set pgp_use_gpg_agent = yes
+```
+
 ### How to operate with NeoMutt
+Every time you add a new entry to your address book with `'<SHIFT>+a'`, you have
+to run `'<CTRL>+k'`, if you want to check if a key for the new address is
+available.
+
+**Note**: 8 backups of the addressbook are kept, when using the script through
+the `'<CTRL>+k'` macro from inside NeoMutt or using the script manually.
+
 **Start Mutt with the following command**: `mutt` or `neomutt`  
 **Add an email address to abook**: `'<SHIFT>+a'`  
-**Receive public GPG/OpenPGP keys for all unknown contacts**: `'<CTRL>+k'`  
+**Refresh public GPG/OpenPGP keys for all ucontacts**: `'<CTRL>+k'`  
 **Query email contacts**: Press `'<TAB>'`
+
+# This is a WIP. Any help appreciated.
+If you find something which is unclear or you have a solution for setting up
+Mutt for use with GPG please contact me or open an issue on this repository.
 
