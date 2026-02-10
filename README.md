@@ -3,21 +3,13 @@ Receive new GPG keys from within Mutt or NeoMutt with the "abook" TUI program.
 
 **Read this README in full and be sure that you have understood!**
 
-   **DANGER**: All information except 'name' and 'email' are **deleted**,
-   when using the macros in NeoMutt or Mutt. The 'notes' field is used to
-   store information, if a GnuPG/OpenPGP public key has been found for the
-   contact. So you best start with a fresh address book or make a backup of your
-   existing address book (see entry '3.' under 'Setup').
+   **DANGER**: All information except 'name' and 'email' are **deleted**
+   from the address book when using the `'<CTRL>+k'` macro in NeoMutt or
+   Mutt. The 'notes' field is used to store information, if a GnuPG/OpenPGP
+   public key has been found for the contact. So you best start with a fresh
+   address book or make a backup of your existing address book:
 
-**Note**: All contact names added to abook by Mutt or NeoMutt are prefixed
-automatically with '#'. These are again removed when searching in Mutt or
-NeoMutt. This is needed to find those entries by the `get_new_keys.sh`
-script. So if you enter an address to your abook contacts manually, you
-**have** to prefix the contact's name with a '#' char, otherwise **they
-will be deleted** when running the `get_new_keys.sh` script from the Mutt or
-NeoMutt macro `(<CTRL>+k)`. That is because the `abook --mutt-query` command can't be used
-with an empty string as an parameter. So I search addresses with the command
-`abook --mutt-query '#'`. Keep that in mind!
+   `cp ~/.abook/addressbook ~/.abook/addressbook.orig`
 
 # Setup
 1. Setup your '~/.gnupg/gpg.conf' as follows:
@@ -42,19 +34,9 @@ auto-key-retrieve
   `gpg --full-gen-key` for a more advanced setup and appending a comment to your
   key. However, I recommend going with the defaults for the key algorithms.
 
-3. **Important**: It's best to start with a fresh address book! If you do then
-   the following command is not needed.
+3. Clone this repository to '~/.abook':
 
-   If you already have an abook address book, you need to add a
-   '#' before all names!
-
-   `sed -i.orig -r 's/^name=([^#].*)$/name=#\1/g' ~/.abook/addressbook`
-
-   A backup of the old file is stored into `~/.abook/addressbook.orig`.
-
-4. Clone this repository to '~/.abook':
-
-  `git clone https://git.envs.net/dan/mutt-abook-gpg.git ~/.abook`
+   `git clone https://git.envs.net/dan/mutt-abook-gpg.git ~/.abook`
 
 ## Setup for Mutt
 Add the following line to your '.muttrc':
