@@ -3,24 +3,17 @@ readarray ALL_EMAILS
 CSV=$(mktemp --suffix=.csv)
 CONV_ABOOK=$(mktemp)
 
-KEYLIST="$(gpg --list-keys)"
 
 IFS=$'\n'
 for element in ${ALL_EMAILS[@]}; do
   EMAIL=$(echo "${element}" | cut -f 1)
-  FOUND_EMAIL=$(printf '%s' "${KEYLIST}" | grep -F "${EMAIL}")
   NAME=$(echo "${element}" | cut -f 2 | tr -d '\t' | sed -e 's/\s*$//')
-  if [[ -z "${FOUND_EMAIL}" ]]; then
-    if gpg --locate-keys --quiet "${EMAIL}" >/dev/null 2>&1;then
-      printf "ADDED: %s <%s>!\n" "${NAME}" "${EMAIL}"
-      printf "\"%s\",\"%s\",\"\",\"%s\",\"\"\n" "${NAME}" "${EMAIL}" "PGP yes" >>"${CSV}"
-    else
-      printf "NOT FOUND: %s <%s>\n" "${NAME}" "${EMAIL}"
-      printf "\"%s\",\"%s\",\"\",\"%s\",\"\"\n" "${NAME}" "${EMAIL}" "PGP no" >>"${CSV}"
-    fi
+  if gpg --locate-keys --quiet "${EMAIL}" >/dev/null 2>&1;then
+    printf "ADDED: %s <%s>!\n" "${NAME}" "${EMAIL}"
+    printf "\"%s\",\"%s\",\"\",\"%s\",\"\"\n" "${NAME}" "${EMAIL}" "PGP yes" >>"${CSV}"
   else
-    printf "Found: %s <%s>\n" "${NAME}" "${EMAIL}"
-      printf "\"%s\",\"%s\",\"\",\"%s\",\"\"\n" "${NAME}" "${EMAIL}" "PGP yes" >>"${CSV}"
+    printf "NOT FOUND: %s <%s>\n" "${NAME}" "${EMAIL}"
+    printf "\"%s\",\"%s\",\"\",\"%s\",\"\"\n" "${NAME}" "${EMAIL}" "PGP no" >>"${CSV}"
   fi
 done
 
