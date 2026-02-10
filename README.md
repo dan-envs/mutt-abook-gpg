@@ -41,7 +41,8 @@ auto-key-retrieve
 ## Setup for Mutt
 Add the following line to your '.muttrc':
 
-`source ~/.abook/abook.mutt.rc`
+If abook since v0.6.2: `source ~/.abook/abook.mutt.rc`  
+If abook before v0.6.2: `source ~/.abook/abook-before-v0.6.2.mutt.rc`
 
 ### Set up Mutt to use GPG for signing/encryption
 You have to set up Mutt yourself for using GPG. I can't help you there, because
@@ -65,7 +66,8 @@ the `'<CTRL>+k'` macro from inside Mutt or using the script manually.
 ## Setup for NeoMutt
 Add the following line to your '~/.config/mutt/muttrc':
 
-`source ~/.abook/abook.neomutt.rc`
+If abook since v0.6.2: `source ~/.abook/abook.neomutt.rc`  
+If abook before v0.6.2: `source ~/.abook/abook-before-v0.6.2.neomutt.rc`
 
 Create an alias in your '.bashrc' or '.zsh' for `mutt`:
 
