@@ -5,7 +5,7 @@ CONV_ABOOK=$(mktemp)
 
 
 IFS=$'\n'
-for element in ${ALL_EMAILS[@]}; do
+for element in "${ALL_EMAILS[@]}"; do
   EMAIL=$(echo "${element}" | cut -f 1)
   NAME=$(echo "${element}" | cut -f 2 | tr -d '\t' | sed -e 's/\s*$//')
   if gpg --locate-keys --quiet "${EMAIL}" >/dev/null 2>&1;then
