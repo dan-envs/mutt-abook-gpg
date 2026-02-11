@@ -1,8 +1,12 @@
 # mutt-abook-gpg
-![Drone CI Badge](https://drone.envs.net/api/badges/dan/mutt-abook-gpg/status.svg)
+![Drone CI badge](https://drone.envs.net/api/badges/dan/mutt-abook-gpg/status.svg)  
+
+**Mirror**: https://github.com/dan-envs/mutt-abook-gpg from/to
+https://git.envs.net/dan/mutt-abook-gpg  
 
 Receive new GPG keys from within Mutt or NeoMutt with the "abook" TUI program.
 
+## Be careful
 **Read this README in full and be sure that you have understood!**
 
    **DANGER**: All information except 'name' and 'email' are **deleted**
