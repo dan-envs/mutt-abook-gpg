@@ -2,9 +2,19 @@
 ![Drone CI badge](https://drone.envs.net/api/badges/dan/mutt-abook-gpg/status.svg)  
 
 **Mirror**: https://github.com/dan-envs/mutt-abook-gpg from/to
-https://git.envs.net/dan/mutt-abook-gpg  
+https://git.envs.net/dan/mutt-abook-gpg
 
-Receive new GPG keys from within Mutt or NeoMutt with the "abook" TUI program.
+With this setup you can receive new GPG keys from within Mutt or NeoMutt with
+the "abook" TUI program. With the provided macros you can store new addresses
+to the address book and fetch the public keys from all contacts, if they're
+available from either WKD (Web Key Directory) or hkps://keys.openpgp.org.
+
+(Neo)Mutt is set up, that you can encrypt/decrypt/sign/verify emails from within
+(Neo)Mutt automatically.
+
+This repository is actually made for the **envs.net** pubnix users to
+set up their Mutt accounts with GPG support, but everyone can use it, if they
+want and contributions are highly appreciated.
 
 ## Be careful
 **Read this README in full and be sure that you have understood!**
