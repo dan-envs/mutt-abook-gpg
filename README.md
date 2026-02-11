@@ -1,4 +1,6 @@
 # mutt-abook-gpg
+![Drone CI Badge](https://drone.envs.net/api/badges/dan/mutt-abook-gpg/status.svg)
+
 Receive new GPG keys from within Mutt or NeoMutt with the "abook" TUI program.
 
 **Read this README in full and be sure that you have understood!**
