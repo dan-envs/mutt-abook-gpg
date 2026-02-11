@@ -1,0 +1,9 @@
+---
+pipeline:
+  shellcheck:
+    image: koalaman/shellcheck-alpine
+    commands:
+      - shellcheck *.sh
+    when:
+      event:
+        - push
