@@ -33,6 +33,7 @@ want and contributions are highly appreciated.
 ```
 auto-key-locate wkd,keyserver
 keyserver hkps://keys.openpgp.org/
+trust-model tofu
 auto-key-retrieve
 ```
 
